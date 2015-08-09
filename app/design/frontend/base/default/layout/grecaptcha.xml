@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+
+/**
+ * @category NoGlitchYo
+ * @package NoGlitchYo_GoogleRecaptcha
+ * @author Maxime ELOMARI <maxime.elomari@gmail.com>
+ * @copyright Copyright (c) 2015, Maxime Elomari
+ * @license http://opensource.org/licenses/MIT
+ */
+
+-->
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addExternalItem"><type>external_js</type><name>https://www.google.com/recaptcha/api.js</name><params>defer async</params></action>
+        </reference>
+
+        <block type="grecaptcha/widget" name="grecaptcha-widget" as="grecaptcha_widget" template="grecaptcha/widget.phtml"/>
+    </default>
+</layout>

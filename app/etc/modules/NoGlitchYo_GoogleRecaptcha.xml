@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <NoGlitchYo_GoogleRecaptcha>
+            <active>true</active>
+            <codePool>community</codePool>
+        </NoGlitchYo_GoogleRecaptcha>
+    </modules>
+</config>
