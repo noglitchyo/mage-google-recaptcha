@@ -4,6 +4,9 @@
         <NoGlitchYo_GoogleRecaptcha>
             <active>true</active>
             <codePool>community</codePool>
+            <depends>
+                <Mage_Customer />
+            </depends>
         </NoGlitchYo_GoogleRecaptcha>
     </modules>
 </config>

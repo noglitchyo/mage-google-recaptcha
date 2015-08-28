@@ -1,5 +1,13 @@
 <?xml version="1.0"?>
-
+<!--
+/**
+ * @category NoGlitchYo
+ * @package NoGlitchYo_Google_Recaptcha
+ * @author Maxime ELOMARI <maxime.elomari@gmail.com>
+ * @copyright Copyright (c) 2015, Maxime Elomari
+ * @license http://opensource.org/licenses/MIT
+ */
+-->
 <config>
     <modules>
         <NoGlitchYo_GoogleRecaptcha>
@@ -7,6 +15,11 @@
         </NoGlitchYo_GoogleRecaptcha>
     </modules>
     <global>
+        <blocks>
+            <grecaptcha>
+                <class>NoGlitchYo_GoogleRecaptcha_Block</class>
+            </grecaptcha>
+        </blocks>
         <helpers>
             <grecaptcha>
                 <class>NoGlitchYo_GoogleRecaptcha_Helper</class>
@@ -17,6 +30,48 @@
                 <class>NoGlitchYo_GoogleRecaptcha_Model</class>
             </grecaptcha>
         </models>
+        <events>
+            <controller_action_predispatch_customer_account_loginPost>
+                <observers>
+                    <grecaptcha>
+                        <class>grecaptcha/observer_customer</class>
+                        <method>validateLogin</method>
+                    </grecaptcha>
+                </observers>
+            </controller_action_predispatch_customer_account_loginPost>
+            <controller_action_predispatch_customer_account_forgotpasswordpost>
+                <observers>
+                    <grecaptcha>
+                        <class>grecaptcha/observer_customer</class>
+                        <method>validateForgotPassword</method>
+                    </grecaptcha>
+                </observers>
+            </controller_action_predispatch_customer_account_forgotpasswordpost>
+            <controller_action_predispatch_customer_account_createpost>
+                <observers>
+                    <grecaptcha>
+                        <class>grecaptcha/observer_customer</class>
+                        <method>validateCreate</method>
+                    </grecaptcha>
+                </observers>
+            </controller_action_predispatch_customer_account_createpost>
+            <controller_action_predispatch_adminhtml_index_forgotpassword>
+                <observers>
+                    <grecaptcha>
+                        <class>grecaptcha/observer_adminhtml</class>
+                        <method>validateForgotPassword</method>
+                    </grecaptcha>
+                </observers>
+            </controller_action_predispatch_adminhtml_index_forgotpassword>
+            <admin_user_authenticate_before>
+                <observers>
+                    <grecaptcha>
+                        <class>grecaptcha/observer_adminhtml</class>
+                        <method>validateLogin</method>
+                    </grecaptcha>
+                </observers>
+            </admin_user_authenticate_before>
+        </events>
     </global>
     <frontend>
         <routers>
@@ -39,12 +94,18 @@
     <default>
         <grecaptcha>
             <general>
+                <endpoint_uri>https://www.google.com/recaptcha/api/siteverify</endpoint_uri>
+            </general>
+            <keys>
                 <site_key></site_key>
                 <secret_key></secret_key>
-            </general>
-            <urls>
-                <verify>https://www.google.com/recaptcha/api/siteverify</verify>
-            </urls>
+            </keys>
+            <pages>
+                <customer_account_create>1</customer_account_create>
+                <customer_account_login>1</customer_account_login>
+                <customer_account_forgotpassword>1</customer_account_forgotpassword>
+                <checkout_onepage_index>1</checkout_onepage_index>
+            </pages>
         </grecaptcha>
     </default>
 </config>

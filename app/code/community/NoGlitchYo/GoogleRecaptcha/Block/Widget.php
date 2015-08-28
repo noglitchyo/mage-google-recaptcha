@@ -7,15 +7,15 @@
  * @license http://opensource.org/licenses/MIT
  */
 
-class NoGlitchYo_GoogleRecaptcha_Block_Form extends Mage_Core_Block_Template
+class NoGlitchYo_GoogleRecaptcha_Block_Widget extends Mage_Core_Block_Template
 {
     public function getKey()
     {
-        return Mage::getStoreConfig();
+        return Mage::getStoreConfig(NoGlitchYo_GoogleRecaptcha_Helper_Data::XML_PATH_SITE_KEY);
     }
 
     public function getSecureToken()
     {
-        return Mage::helper('grecaptcha/data')->getSecureToken();
+        return Mage::helper('grecaptcha')->getSecureToken();
     }
 }

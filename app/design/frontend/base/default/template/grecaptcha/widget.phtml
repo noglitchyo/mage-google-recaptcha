@@ -7,7 +7,14 @@
  * @license http://creativecommons.org/licenses/by/4.0 Creative Common BY 4.0
  */
 ?>
+<?php
+/** @var $this NoGlitchYo_GoogleRecaptcha_Block_Widget */
+?>
 <script type="text/javascript">
-
+    var onloadCallback = function() {
+        grecaptcha.render('g_recaptcha', {
+           'sitekey' : '<?php echo $this->getKey() ?>'
+        });
+    };
 </script>
-<div class="g-recaptcha" data-sitekey="<?php echo $this->getKey() ?>"></div>
+<div id="g_recaptcha"></div>

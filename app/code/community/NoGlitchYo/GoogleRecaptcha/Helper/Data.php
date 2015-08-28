@@ -1,5 +1,6 @@
 <?php
 /**
+ * @category NoGlitchYo
  * @package NoGlitchYo_Google_Recaptcha
  * @author Maxime ELOMARI <maxime.elomari@gmail.com>
  * @copyright Copyright (c) 2015, Maxime Elomari
@@ -8,16 +9,34 @@
 
 class NoGlitchYo_GoogleRecaptcha_Helper_Data extends Mage_Core_Helper_Data
 {
-    const XML_PATH_SITE_KEY     = 'grecaptcha/general/site_key';
-    const XML_PATH_SECRET_KEY   = 'grecaptcha/general/secret_key';
+    const XML_PATH_SITE_KEY     = 'grecaptcha/keys/site_key';
+    const XML_PATH_SECRET_KEY   = 'grecaptcha/keys/secret_key';
+    const XML_PATH_VALIDATION_ENDPOINT_URI   = 'grecaptcha/general/endpoint_uri';
 
+    /**
+     * Token in JSON
+     * @return string
+     */
     public function getSecureToken()
     {
+        /**
+         * A unique string that identifies this request.
+         * Every CAPTCHA request needs a distinct session_id.
+         */
         $token = array(
-            'session_id' => Mage::getSingleton('core/session')->getFormKey(),
+            'session_id' => Mage::getSingleton('core/session')->getFormKey(), //maybe use the session_id?
             'ts_ms' => time()
         );
 
         return json_encode($token);
+    }
+
+    /**
+     * Encrypted secure token with site secret
+     * @return string
+     */
+    public function getEncryptedSecureToken()
+    {
+        return crypt($this->getSecureToken(), Mage::getStoreConfig(self::XML_PATH_SECRET_KEY));
     }
 }

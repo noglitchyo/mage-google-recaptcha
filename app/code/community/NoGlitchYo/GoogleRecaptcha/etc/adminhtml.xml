@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category NoGlitchYo
+ * @package NoGlitchYo_Google_Recaptcha
+ * @author Maxime ELOMARI <maxime.elomari@gmail.com>
+ * @copyright Copyright (c) 2015, Maxime Elomari
+ * @license http://opensource.org/licenses/MIT
+ */
+-->
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <grecaptcha translate="title" module="grecaptcha">
+                                        <title>Google reCAPTCHA</title>
+                                    </grecaptcha>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
