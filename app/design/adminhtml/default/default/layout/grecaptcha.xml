@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * NOTICE OF LICENSE
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ * WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
+ * THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * @category NoGlitchYo
+ * @package NoGlitchYo_Google_Recaptcha
+ * @author Maxime ELOMARI <maxime.elomari@gmail.com>
+ * @copyright Copyright (c) 2015, Maxime Elomari
+ * @license http://opensource.org/licenses/MIT
+ */
+-->
+<layout version="0.1.0">
+    <default module="grecaptcha">
+        <block type="grecaptcha/widget" name="grecaptcha.widget" as="grecaptcha_widget" template="grecaptcha/widget.phtml">
+            <block type="core/text" name="grecaptcha_api">
+                <action method="setText"><text><![CDATA[<script defer async src="//www.google.com/recaptcha/api.js?onload=onloadCallback&amp;render=explicit"></script>]]></text></action>
+            </block>
+        </block>
+    </default>
+
+    <adminhtml_index_login>
+        <reference name="form.additional.info">
+            <action ifconfig="grecaptcha/pages/adminhtml_index_login" method="append"><block>grecaptcha.widget</block></action>
+        </reference>
+    </adminhtml_index_login>
+
+    <adminhtml_index_forgotpassword>
+        <reference name="form.additional.info">
+            <action ifconfig="grecaptcha/pages/adminhtml_index_forgotpassword" method="append"><block>grecaptcha.widget</block></action>
+        </reference>
+    </adminhtml_index_forgotpassword>
+</layout>

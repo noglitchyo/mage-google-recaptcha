@@ -19,7 +19,9 @@ class NoGlitchYo_GoogleRecaptcha_Helper_Data extends Mage_Core_Helper_Data
 {
     const XML_PATH_SITE_KEY     = 'grecaptcha/keys/site_key';
     const XML_PATH_SECRET_KEY   = 'grecaptcha/keys/secret_key';
+
     const XML_PATH_VALIDATION_ENDPOINT_URI   = 'grecaptcha/general/endpoint_uri';
+    const XML_PATH_VALIDATE_CHECKOUT_1P_IDX  = 'grecaptcha/recaptcha_on/checkout_onepage_index';
 
     /**
      * Token in JSON

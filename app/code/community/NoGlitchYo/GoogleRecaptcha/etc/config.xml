@@ -99,6 +99,15 @@
             </updates>
         </layout>
     </frontend>
+    <adminhtml>
+        <layout>
+            <updates>
+                <grecaptcha>
+                    <file>grecaptcha.xml</file>
+                </grecaptcha>
+            </updates>
+        </layout>
+    </adminhtml>
     <default>
         <grecaptcha>
             <general>
@@ -108,12 +117,14 @@
                 <site_key></site_key>
                 <secret_key></secret_key>
             </keys>
-            <pages>
+            <recaptcha_on>
                 <customer_account_create>1</customer_account_create>
                 <customer_account_login>1</customer_account_login>
                 <customer_account_forgotpassword>1</customer_account_forgotpassword>
                 <checkout_onepage_index>1</checkout_onepage_index>
-            </pages>
+                <adminhtml_index_login>0</adminhtml_index_login>
+                <adminhtml_index_forgotpassword>1</adminhtml_index_forgotpassword>
+            </recaptcha_on>
         </grecaptcha>
     </default>
 </config>

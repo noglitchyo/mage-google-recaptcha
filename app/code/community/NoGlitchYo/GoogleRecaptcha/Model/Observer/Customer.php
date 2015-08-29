@@ -17,6 +17,10 @@
 
 class NoGlitchYo_GoogleRecaptcha_Model_Observer_Customer
 {
+    const XML_PATH_VALIDATE_CUSTOMER_CREATE     = 'grecaptcha/recaptcha_on/customer_account_create';
+    const XML_PATH_VALIDATE_CUSTOMER_LOGIN      = 'grecaptcha/recaptcha_on/customer_account_login';
+    const XML_PATH_VALIDATE_CUSTOMER_FORGOT     = 'grecaptcha/recaptcha_on/customer_account_forgotpassword';
+
     protected function _getValidator()
     {
         return Mage::getSingleton('grecaptcha/validator');
@@ -29,14 +33,16 @@ class NoGlitchYo_GoogleRecaptcha_Model_Observer_Customer
      */
     public function validateLogin($observer)
     {
-        $controller = $observer->getControllerAction();
+        if (Mage::getStoreConfig(self::XML_PATH_VALIDATE_CUSTOMER_LOGIN)) {
+            $controller = $observer->getControllerAction();
 
-        if ( ! $this->_getValidator()->validate($controller)) {
-            Mage::getSingleton('customer/session')->addError(Mage::helper('grecaptcha')->__('Incorrect reCAPTCHA.'));
-            $controller->setFlag('', Mage_Core_Controller_Varien_Action::FLAG_NO_DISPATCH, true);
-            $beforeUrl = Mage::getSingleton('customer/session')->getBeforeAuthUrl();
-            $url =  $beforeUrl ? $beforeUrl : Mage::helper('customer')->getLoginUrl();
-            $controller->getResponse()->setRedirect($url);
+            if (!$this->_getValidator()->validate()) {
+                Mage::getSingleton('customer/session')->addError(Mage::helper('grecaptcha')->__('Incorrect reCAPTCHA.'));
+                $controller->setFlag('', Mage_Core_Controller_Varien_Action::FLAG_NO_DISPATCH, true);
+                $beforeUrl = Mage::getSingleton('customer/session')->getBeforeAuthUrl();
+                $url = $beforeUrl ? $beforeUrl : Mage::helper('customer')->getLoginUrl();
+                $controller->getResponse()->setRedirect($url);
+            }
         }
 
         return $this;
@@ -44,13 +50,15 @@ class NoGlitchYo_GoogleRecaptcha_Model_Observer_Customer
 
     public function validateCreate($observer)
     {
-        $controller = $observer->getControllerAction();
+        if (Mage::getStoreConfig(self::XML_PATH_VALIDATE_CUSTOMER_CREATE)) {
+            $controller = $observer->getControllerAction();
 
-        if ( ! $this->_getValidator()->validate($controller)) {
-            Mage::getSingleton('customer/session')->addError(Mage::helper('captcha')->__('Incorrect reCAPTCHA.'));
-            $controller->setFlag('', Mage_Core_Controller_Varien_Action::FLAG_NO_DISPATCH, true);
-            Mage::getSingleton('customer/session')->setCustomerFormData($controller->getRequest()->getPost());
-            $controller->getResponse()->setRedirect(Mage::getUrl('*/*/create'));
+            if (!$this->_getValidator()->validate()) {
+                Mage::getSingleton('customer/session')->addError(Mage::helper('grecaptcha')->__('Incorrect reCAPTCHA.'));
+                $controller->setFlag('', Mage_Core_Controller_Varien_Action::FLAG_NO_DISPATCH, true);
+                Mage::getSingleton('customer/session')->setCustomerFormData($controller->getRequest()->getPost());
+                $controller->getResponse()->setRedirect(Mage::getUrl('*/*/create'));
+            }
         }
 
         return $this;
@@ -58,6 +66,16 @@ class NoGlitchYo_GoogleRecaptcha_Model_Observer_Customer
 
     public function validateForgotPassword($observer)
     {
+        if (Mage::getStoreConfig(self::XML_PATH_VALIDATE_CUSTOMER_FORGOT)) {
+            $controller = $observer->getControllerAction();
 
+            if (!$this->_getValidator()->validate()) {
+                Mage::getSingleton('customer/session')->addError(Mage::helper('captcha')->__('Incorrect reCAPTCHA.'));
+                $controller->setFlag('', Mage_Core_Controller_Varien_Action::FLAG_NO_DISPATCH, true);
+                $controller->getResponse()->setRedirect(Mage::getUrl('*/*/forgotpassword'));
+            }
+        }
+
+        return $this;
     }
 }

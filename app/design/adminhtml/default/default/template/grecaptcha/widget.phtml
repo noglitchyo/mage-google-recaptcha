@@ -1,5 +1,4 @@
-<?xml version="1.0"?>
-<!--
+<?php
 /**
  * NOTICE OF LICENSE
  *
@@ -15,16 +14,18 @@
  * @copyright Copyright (c) 2015, Maxime Elomari
  * @license http://opensource.org/licenses/MIT
  */
--->
-<config>
-    <modules>
-        <NoGlitchYo_GoogleRecaptcha>
-            <active>true</active>
-            <codePool>community</codePool>
-            <depends>
-                <Mage_Customer />
-                <Mage_Adminhtml />
-            </depends>
-        </NoGlitchYo_GoogleRecaptcha>
-    </modules>
-</config>
+
+?>
+
+<?php
+/** @var $this NoGlitchYo_GoogleRecaptcha_Block_Widget */
+?>
+<?php echo $this->getChildHtml('grecaptcha_api') ?>
+<script type="text/javascript">
+    var onloadCallback = function() {
+        grecaptcha.render('g_recaptcha', {
+           'sitekey' : '<?php echo $this->getKey() ?>'
+        });
+    };
+</script>
+<div id="g_recaptcha"></div>

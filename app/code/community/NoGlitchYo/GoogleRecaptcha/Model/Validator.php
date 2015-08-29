@@ -17,9 +17,9 @@
 
 class NoGlitchYo_GoogleRecaptcha_Model_Validator
 {
-    public function validate($controller)
+    public function validate()
     {
-        $captchaResponse= $controller->getRequest()->getPost('g-recaptcha-response');
+        $captchaResponse = Mage::app()->getFrontController()->getAction()->getRequest()->getPost('g-recaptcha-response');
         $secret = Mage::getStoreConfig(NoGlitchYo_GoogleRecaptcha_Helper_Data::XML_PATH_SECRET_KEY);
 
         $data = $this->_request($captchaResponse, $secret);
