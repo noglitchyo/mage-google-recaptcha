@@ -11,4 +11,10 @@ Actually, Google reCAPTCHA can be activated on the following pages:
 - Backend Login
 - Backend Forgot Password
 
+### Customer Login
+
 ![Login Page](/../screenshots/preview_customer.jpg?raw=true "Login Page with Google reCAPTCHA")
+
+### Backend - Forgot Password
+
+![Forgot Password Backend](/../screenshots/backend_forgotpwd_preview.jpg?raw=true "Backend Forgot Password with Google reCAPTCHA")
