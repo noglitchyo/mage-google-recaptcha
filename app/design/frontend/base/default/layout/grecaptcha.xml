@@ -52,13 +52,11 @@
     </customer_account_forgotpassword>
 
     <contacts_index_index>
-        <reference name="content">
-            <reference name="contactForm">
-                <action method="setTemplate"><template>grecaptcha/contacts/form.phtml</template></action>
-                <block type="core/text_list" name="form.additional.info">
-                    <action ifconfig="grecaptcha/recaptcha_on/contacts_index_index" method="append"><block>grecaptcha.widget</block></action>
-                </block>
-            </reference>
+        <reference name="contactForm">
+            <action ifconfig="grecaptcha/recaptcha_on/contacts_index_index" method="setTemplate"><template>grecaptcha/contacts/form.phtml</template></action>
+            <block type="core/text_list" name="form.additional.info">
+                <action ifconfig="grecaptcha/recaptcha_on/contacts_index_index" method="append"><block>grecaptcha.widget</block></action>
+            </block>
         </reference>
     </contacts_index_index>
 </layout>
