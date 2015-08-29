@@ -1,7 +1,7 @@
 # mage-google-recaptcha
-Google reCaptcha for Magento
+Google reCAPTCHA for Magento
 
-This module offers the possibility to implement Google reCaptcha : https://www.google.com/recaptcha in his version 2.0 in your Magento instance.
+This module offers the possibility to implement Google reCAPTCHA : https://www.google.com/recaptcha in his version 2.0 in your Magento instance.
 
 Actually, Google reCAPTCHA can be activated on the following pages:
 
