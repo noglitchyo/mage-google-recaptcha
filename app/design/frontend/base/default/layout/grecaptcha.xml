@@ -30,7 +30,7 @@
     <customer_account_login>
         <reference name="customer_form_login">
             <block type="core/text_list" name="form.additional.info">
-                <action ifconfig="grecaptcha/pages/customer_account_login" method="append"><block>grecaptcha.widget</block></action>
+                <action ifconfig="grecaptcha/recaptcha_on/customer_account_login" method="append"><block>grecaptcha.widget</block></action>
             </block>
         </reference>
     </customer_account_login>
@@ -38,7 +38,7 @@
     <customer_account_create>
         <reference name="customer_form_register">
             <block type="core/text_list" name="form.additional.info">
-                <action ifconfig="grecaptcha/pages/customer_account_create" method="append"><block>grecaptcha.widget</block></action>
+                <action ifconfig="grecaptcha/recaptcha_on/customer_account_create" method="append"><block>grecaptcha.widget</block></action>
             </block>
         </reference>
     </customer_account_create>
@@ -46,7 +46,7 @@
     <customer_account_forgotpassword>
         <reference name="forgotPassword">
             <block type="core/text_list" name="form.additional.info" >
-                <action ifconfig="grecaptcha/pages/customer_account_forgotpassword" method="append"><block>grecaptcha.widget</block></action>
+                <action ifconfig="grecaptcha/recaptcha_on/customer_account_forgotpassword" method="append"><block>grecaptcha.widget</block></action>
             </block>
         </reference>
     </customer_account_forgotpassword>
@@ -54,7 +54,7 @@
     <checkout_onepage_index>
         <reference name="checkout.onepage.login">
             <block type="core/text_list" name="form.additional.info" >
-                <action ifconfig="grecaptcha/pages/checkout_onepage_index" method="append"><block>grecaptcha.widget</block></action>
+                <action ifconfig="grecaptcha/recaptcha_on/checkout_onepage_index" method="append"><block>grecaptcha.widget</block></action>
             </block>
         </reference>
     </checkout_onepage_index>

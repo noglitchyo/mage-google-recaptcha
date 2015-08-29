@@ -27,13 +27,13 @@
 
     <adminhtml_index_login>
         <reference name="form.additional.info">
-            <action ifconfig="grecaptcha/pages/adminhtml_index_login" method="append"><block>grecaptcha.widget</block></action>
+            <action ifconfig="grecaptcha/recaptcha_on/adminhtml_index_login" method="append"><block>grecaptcha.widget</block></action>
         </reference>
     </adminhtml_index_login>
 
     <adminhtml_index_forgotpassword>
         <reference name="form.additional.info">
-            <action ifconfig="grecaptcha/pages/adminhtml_index_forgotpassword" method="append"><block>grecaptcha.widget</block></action>
+            <action ifconfig="grecaptcha/recaptcha_on/adminhtml_index_forgotpassword" method="append"><block>grecaptcha.widget</block></action>
         </reference>
     </adminhtml_index_forgotpassword>
 </layout>
