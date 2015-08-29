@@ -10,6 +10,7 @@ Actually, Google reCAPTCHA can be activated on the following pages:
 - Customer Create
 - Backend Login
 - Backend Forgot Password
+- Contact Us Form
 
 ### Customer Login
 

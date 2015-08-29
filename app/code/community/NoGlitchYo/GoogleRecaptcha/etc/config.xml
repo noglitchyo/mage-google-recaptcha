@@ -79,6 +79,14 @@
                     </grecaptcha>
                 </observers>
             </admin_user_authenticate_before>
+            <controller_action_predispatch_contacts_index_post>
+                <observers>
+                    <grecaptcha>
+                        <class>grecaptcha/observer_contacts</class>
+                        <method>validateContactForm</method>
+                    </grecaptcha>
+                </observers>
+            </controller_action_predispatch_contacts_index_post>
         </events>
     </global>
     <frontend>
@@ -121,9 +129,9 @@
                 <customer_account_create>1</customer_account_create>
                 <customer_account_login>1</customer_account_login>
                 <customer_account_forgotpassword>1</customer_account_forgotpassword>
-                <checkout_onepage_index>1</checkout_onepage_index>
                 <adminhtml_index_login>0</adminhtml_index_login>
                 <adminhtml_index_forgotpassword>1</adminhtml_index_forgotpassword>
+                <contacts_index_index>1</contacts_index_index>
             </recaptcha_on>
         </grecaptcha>
     </default>

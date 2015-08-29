@@ -51,11 +51,14 @@
         </reference>
     </customer_account_forgotpassword>
 
-    <checkout_onepage_index>
-        <reference name="checkout.onepage.login">
-            <block type="core/text_list" name="form.additional.info" >
-                <action ifconfig="grecaptcha/recaptcha_on/checkout_onepage_index" method="append"><block>grecaptcha.widget</block></action>
-            </block>
+    <contacts_index_index>
+        <reference name="content">
+            <reference name="contactForm">
+                <action method="setTemplate"><template>grecaptcha/contacts/form.phtml</template></action>
+                <block type="core/text_list" name="form.additional.info">
+                    <action ifconfig="grecaptcha/recaptcha_on/contacts_index_index" method="append"><block>grecaptcha.widget</block></action>
+                </block>
+            </reference>
         </reference>
-    </checkout_onepage_index>
+    </contacts_index_index>
 </layout>
