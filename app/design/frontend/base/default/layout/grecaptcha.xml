@@ -21,7 +21,9 @@
         <block type="grecaptcha/widget" name="grecaptcha.widget" as="grecaptcha_widget" template="grecaptcha/widget.phtml">
             <reference name="head">
                 <block type="core/text" name="grecaptcha">
-                    <action method="setText"><text><![CDATA[<script defer async src="//www.google.com/recaptcha/api.js?onload=onloadCallback&amp;render=explicit"></script>]]></text></action>
+                    <action ifconfig="grecaptcha/keys/site_key" method="setText">
+                        <text><![CDATA[<script defer async src="//www.google.com/recaptcha/api.js?onload=onloadCallback&amp;render=explicit"></script>]]></text>
+                    </action>
                 </block>
             </reference>
         </block>

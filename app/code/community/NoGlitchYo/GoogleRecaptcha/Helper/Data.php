@@ -43,10 +43,16 @@ class NoGlitchYo_GoogleRecaptcha_Helper_Data extends Mage_Core_Helper_Data
 
     /**
      * Encrypted secure token with site secret
-     * @return string
+     * @return string|false
      */
     public function getEncryptedSecureToken()
     {
-        return crypt($this->getSecureToken(), Mage::getStoreConfig(self::XML_PATH_SECRET_KEY));
+        if ($this->getSecureToken()){
+            if (Mage::getStoreConfig(self::XML_PATH_SECRET_KEY)) {
+                return crypt($this->getSecureToken(), Mage::getStoreConfig(self::XML_PATH_SECRET_KEY));
+            }
+        }
+
+        return false;
     }
 }

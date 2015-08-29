@@ -20,6 +20,7 @@
 <?php
 /** @var $this NoGlitchYo_GoogleRecaptcha_Block_Widget */
 ?>
+<?php if ($this->getKey()): ?>
 <script type="text/javascript">
     var onloadCallback = function() {
         grecaptcha.render('g_recaptcha', {
@@ -28,3 +29,4 @@
     };
 </script>
 <div id="g_recaptcha"></div>
+<?php endif; ?>
