@@ -52,4 +52,9 @@ class NoGlitchYo_GoogleRecaptcha_Helper_Data extends Mage_Core_Helper_Data
 
         return false;
     }
+
+    public function log($message)
+    {
+        Mage::log($message, 0, 'grecaptcha.log', true);
+    }
 }

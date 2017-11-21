@@ -19,12 +19,22 @@ class NoGlitchYo_GoogleRecaptcha_Model_Observer_Contacts
 {
     const XML_PATH_VALIDATE_CONTACT_US = 'grecaptcha/recaptcha_on/contacts_index_index';
 
+    /**
+     * @return NoGlitchYo_GoogleRecaptcha_Model_Validator
+     */
     protected function _getValidator()
     {
         return Mage::getSingleton('grecaptcha/validator');
     }
 
-    public function validateContactForm($observer)
+    /**
+     * Check Google Recaptcha on User Login Page
+     * Triggered by: controller_action_predispatch_contacts_index_post
+     *
+     * @param Varien_Event_Observer $observer
+     * @return $this
+     */
+    public function validateContactForm(Varien_Event_Observer $observer)
     {
         if (Mage::getStoreConfig(self::XML_PATH_VALIDATE_CONTACT_US)) {
             $controller = $observer->getControllerAction();

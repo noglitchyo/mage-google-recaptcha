@@ -19,10 +19,20 @@ class NoGlitchYo_GoogleRecaptcha_Model_Validator
 {
     const XML_PATH_VALIDATION_ENDPOINT_URI = 'grecaptcha/general/endpoint_uri';
 
+    const GRECAPTCHA_RESPONSE_FORM_FIELD_NAME = 'g-recaptcha-response';
+
+    /**
+     * Validate the captcha by executing the request and return whether or not the captcha is valid (errors are logged)
+     * @return bool
+     */
     public function validate()
     {
-        $captchaResponse = Mage::app()->getFrontController()->getAction()->getRequest()->getPost('g-recaptcha-response');
+        $captchaResponse = Mage::app()->getFrontController()->getAction()->getRequest()->getPost(self::GRECAPTCHA_RESPONSE_FORM_FIELD_NAME);
         $secret = Mage::getStoreConfig(NoGlitchYo_GoogleRecaptcha_Helper_Data::XML_PATH_SECRET_KEY);
+
+        if (empty($secret)) {
+            throw new Exception('Secret for Google reCAPTCHA must be defined first.');
+        }
 
         try {
             $data = $this->_request($captchaResponse, $secret);
@@ -30,9 +40,21 @@ class NoGlitchYo_GoogleRecaptcha_Model_Validator
             return false;
         }
 
+        if (isset($data['error-codes'])) {
+            foreach ($data['error-codes'] as $error) {
+                Mage::helper('grecaptcha')->log(sprintf('Error code: %s', $error));
+            }
+        }
+
         return $data['success'];
     }
 
+    /**
+     * Execute request to Google and validate that captcha response is correct
+     * @param $captchaResponse
+     * @param $secret
+     * @return mixed
+     */
     protected function _request($captchaResponse, $secret)
     {
         try {
@@ -55,7 +77,11 @@ class NoGlitchYo_GoogleRecaptcha_Model_Validator
         return $this->_parseResponse($response);
     }
 
-
+    /**
+     * Decode the response
+     * @param $response
+     * @return array
+     */
     protected function _parseResponse($response)
     {
         $data = Zend_Json::decode($response->getBody());

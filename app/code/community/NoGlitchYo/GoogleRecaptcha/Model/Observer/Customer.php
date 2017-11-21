@@ -21,6 +21,9 @@ class NoGlitchYo_GoogleRecaptcha_Model_Observer_Customer
     const XML_PATH_VALIDATE_CUSTOMER_LOGIN      = 'grecaptcha/recaptcha_on/customer_account_login';
     const XML_PATH_VALIDATE_CUSTOMER_FORGOT     = 'grecaptcha/recaptcha_on/customer_account_forgotpassword';
 
+    /**
+     * @return NoGlitchYo_GoogleRecaptcha_Model_Validator
+     */
     protected function _getValidator()
     {
         return Mage::getSingleton('grecaptcha/validator');
@@ -28,10 +31,12 @@ class NoGlitchYo_GoogleRecaptcha_Model_Observer_Customer
 
     /**
      * Check Google Recaptcha on User Login Page
+     * Triggered by: controller_action_predispatch_customer_account_loginPost
      *
-     * @param $observer
+     * @param Varien_Event_Observer $observer
+     * @return $this
      */
-    public function validateLogin($observer)
+    public function validateLogin(Varien_Event_Observer $observer)
     {
         if (Mage::getStoreConfig(self::XML_PATH_VALIDATE_CUSTOMER_LOGIN)) {
             $controller = $observer->getControllerAction();
@@ -48,7 +53,14 @@ class NoGlitchYo_GoogleRecaptcha_Model_Observer_Customer
         return $this;
     }
 
-    public function validateCreate($observer)
+    /**
+     * Check Google Recaptcha on User Create Account
+     * Triggered by: controller_action_predispatch_customer_account_createpost
+     *
+     * @param Varien_Event_Observer $observer
+     * @return $this
+     */
+    public function validateCreate(Varien_Event_Observer $observer)
     {
         if (Mage::getStoreConfig(self::XML_PATH_VALIDATE_CUSTOMER_CREATE)) {
             $controller = $observer->getControllerAction();
@@ -64,6 +76,13 @@ class NoGlitchYo_GoogleRecaptcha_Model_Observer_Customer
         return $this;
     }
 
+    /**
+     * Check Google Recaptcha on User Forgot Password
+     * Triggered by: controller_action_predispatch_customer_account_forgotpasswordpost
+     *
+     * @param $observer
+     * @return $this
+     */
     public function validateForgotPassword($observer)
     {
         if (Mage::getStoreConfig(self::XML_PATH_VALIDATE_CUSTOMER_FORGOT)) {

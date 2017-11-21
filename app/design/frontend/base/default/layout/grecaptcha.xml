@@ -61,4 +61,12 @@
             </block>
         </reference>
     </contacts_index_index>
+
+    <checkout_onepage_index>
+        <reference name="checkout.onepage.login">
+            <block type="core/text_list" name="form.additional.info" >
+                <action ifconfig="grecaptcha/recaptcha_on/customer_account_login" method="append"><block>grecaptcha.widget</block></action>
+            </block>
+        </reference>
+    </checkout_onepage_index>
 </layout>
