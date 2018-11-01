@@ -36,6 +36,9 @@ class NoGlitchYo_GoogleRecaptcha_Model_Validator
 
         try {
             $data = $this->_request($captchaResponse, $secret);
+            if (empty($data)) {
+                return false;
+            }
         } catch (Exception $e) {
             return false;
         }
@@ -68,10 +71,12 @@ class NoGlitchYo_GoogleRecaptcha_Model_Validator
         catch (Zend_Http_Exception $e) {
             Mage::logException($e);
             Mage::getSingleton('customer/session')->addError(Mage::helper('grecaptcha')->__('Unable to validate the reCAPTCHA with Google. Please, retry later.'));
+            return null;
         }
         catch (Exception $e) {
             Mage::logException($e);
             Mage::getSingleton('customer/session')->addError(Mage::helper('grecaptcha')->__('Unable to validate the reCAPTCHA.'));
+            return null;
         }
 
         return $this->_parseResponse($response);
